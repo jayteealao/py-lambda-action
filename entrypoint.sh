@@ -24,7 +24,7 @@ publish_function_populate(){
 
 publish_function_bevtest(){
 	echo "Deploying the code itself..."
-	zip -r bevtest.zip populate
+	zip -r bevtest.zip beteyeview
 	aws lambda update-function-code --function-name bevtest --zip-file fileb://bevtest.zip
 }
 # publish_function_code(){
