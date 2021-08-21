@@ -16,10 +16,10 @@ publish_dependencies_as_layer(){
 	rm dependencies.zip
 }
 
-publish_function_populate(){
-	echo "Deploying the code itself..."
-	zip -r code.zip populate
-	aws lambda update-function-code --function-name populate_bev_tables --zip-file fileb://code.zip
+# publish_function_populate(){
+# 	echo "Deploying the code itself..."
+# 	zip -r code.zip populate
+# 	aws lambda update-function-code --function-name populate_bev_tables --zip-file fileb://code.zip
 # }
 
 # publish_function_bevtest(){
@@ -36,13 +36,13 @@ publish_function_populate(){
 update_function_layers(){
 	echo "Using the layer in the function..."
 	aws lambda update-function-configuration --function-name populate_bev_tables --layers "${INPUT_LAMBDA_LAYER_ARN}:${LAYER_VERSION}"
-# 	aws lambda update-function-configuration --function-name bevtest --layers "${INPUT_LAMBDA_LAYER_ARN}:${LAYER_VERSION}"
+	aws lambda update-function-configuration --function-name bevtest --layers "${INPUT_LAMBDA_LAYER_ARN}:${LAYER_VERSION}"
 }
 
 deploy_lambda_function(){
 	install_zip_dependencies
 	publish_dependencies_as_layer
-	publish_function_populate
+# 	publish_function_populate
 # 	publish_function_bevtest
 	update_function_layers
 }
