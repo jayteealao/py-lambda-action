@@ -16,23 +16,6 @@ publish_dependencies_as_layer(){
 	rm dependencies.zip
 }
 
-# publish_function_populate(){
-# 	echo "Deploying the code itself..."
-# 	zip -r code.zip populate
-# 	aws lambda update-function-code --function-name populate_bev_tables --zip-file fileb://code.zip
-# }
-
-# publish_function_bevtest(){
-# 	echo "Deploying the code itself..."
-# 	zip -r bevtest.zip beteyeview
-# 	aws lambda update-function-code --function-name bevtest --zip-file fileb://bevtest.zip
-# }
-# publish_function_code(){
-# 	echo "Deploying the code itself..."
-# 	zip -r code.zip . -x \*.git\*
-# 	aws lambda update-function-code --function-name "${INPUT_LAMBDA_FUNCTION_NAME}" --zip-file fileb://code.zip
-# }
-
 update_function_layers(){
 	echo "Using the layer in the function..."
 	aws lambda update-function-configuration --function-name populate_bev_tables --layers "${INPUT_LAMBDA_LAYER_ARN}:${LAYER_VERSION}"
